@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  template:
+    deploy:
+      placement:
+        constraints: [node.hostname == <SERVEUR>] 
+        constraints: [node.labels.function == <GROUPE>]
+    #image source: <Nom de l'image Source>
+    image: registry.nicecotedazur.org:5000/<REPERTOIRE>/<IMAGE>:<TAG>
+    environment:
+      - "<VARIABLE D'ENVIRONNEMENT='valeur'>"
+    ports:
+      - "<PORT EXT:PORT INT>"
+    volumes:
+      - "<VOLUME LOCAL>:<MAPPING>"
+      - "./build/<FICHIER>:<MAPPING>"
+
+volumes:
+  <VOLUME LOCAL>:
+
