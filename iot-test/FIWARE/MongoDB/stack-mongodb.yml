@@ -1,0 +1,46 @@
+version: "3"
+services:
+
+  db1:
+    deploy:
+      placement:
+        constraints: [node.hostname == vmlx2077tech]
+    image: registry.nicecotedazur.org:5000/test-iot/mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - "dbconfig:/data/configdb"
+      - "db:/data/db"
+    command: --replSet "test-iot"
+ 
+  db2:
+    deploy:
+      placement:
+        constraints: [node.hostname == vmlx2078tech]
+    image: registry.nicecotedazur.org:5000/test-iot/mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - "dbconfig:/data/configdb"
+      - "db:/data/db"
+    command: --replSet "test-iot"
+
+  db3:
+    deploy:
+      placement:
+        constraints: [node.hostname == vmlx2079tech]
+    image: registry.nicecotedazur.org:5000/test-iot/mongo:latest
+    ports:
+      - "27019:27017"
+    volumes:
+      - "dbconfig:/data/configdb"
+      - "db:/data/db"
+    command: --replSet "test-iot"
+
+
+
+volumes:
+  dbconfig:
+  db:
+
+
